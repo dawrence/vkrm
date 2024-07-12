@@ -14,7 +14,7 @@ import {
     },
     {
       icon: Guitar,
-      text: "Shows en vivo",
+      text: "Shows en vivo cada semana",
       bg: "bg-indigo-100",
       delay: 1.2,
     },

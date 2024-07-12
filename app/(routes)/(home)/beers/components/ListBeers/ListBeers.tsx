@@ -32,20 +32,22 @@ export function ListBeers(props: ListBeersProps) {
     return <SkeletonBeers />;
   }
 
-  return ( 
+  return (
     <>
       {beers.length === 0 && (
         <p>No se han encontrado cervezas con estos filtros</p>
       )}
-      <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-4">
+      <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-4 ">
         {beers.map((beer: Beer) => {
-          const { 
+          const {
             id,
             price,
             photo,
             name,
-            brand,
-            type,
+            style,
+            family,
+            tp,
+            categories,
             abv,
             ibu,
             volume,
@@ -53,7 +55,7 @@ export function ListBeers(props: ListBeersProps) {
           } = beer;
           const likedBeer = lovedItems.some((item) => item.id === beer.id);
           return (
-            <div key={id} className="p-1 rounded-lg shadow-md hover:shadow-lg">
+            <div key={id} className="p-1 rounded-lg shadow-md hover:shadow-lg dark:bg-gray-800">
               <Image
                 src={photo}
                 alt=""
@@ -75,8 +77,26 @@ export function ListBeers(props: ListBeersProps) {
 
                 <p className="flex items-center">
                   <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
-                  <p className="text-1xl font-bold">Marca: </p>
-                  {brand}
+                  <p className="text-1xl font-bold">Familia: </p>
+                  {family}
+                </p>
+
+                <p className="flex items-center">
+                  <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
+                  <p className="text-1xl font-bold">Estilo: </p>
+                  {style}
+                </p>
+
+                <p className="flex items-center">
+                  <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
+                  <p className="text-1xl font-bold">Presentacion: </p>
+                  {tp}
+                </p>
+
+                <p className="flex items-center">
+                  <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
+                  <p className="text-1xl font-bold">Categoria: </p>
+                  {categories}
                 </p>
 
                 <p className="flex items-center">
@@ -94,13 +114,7 @@ export function ListBeers(props: ListBeersProps) {
                 <p className="flex items-center">
                   <Square className="h-4 w-4 mr-2" strokeWidth={1} />
                   <p className="text-1xl font-bold">Cantidad: </p>
-                  {volume}
-                </p>
-
-                <p className="flex items-center">
-                  <Gem className="h-4 w-4 mr-2" strokeWidth={1} />
-                  <p className="text-1xl font-bold">Tipo de cerveza: </p>
-                  {type}
+                  {volume} ML
                 </p>
 
                 {userId ? (
@@ -108,7 +122,7 @@ export function ListBeers(props: ListBeersProps) {
                     {/* <ModalAddReservation beer={beer} /> */}
                     <Heart
                       className={`mt-2 cursor-pointer ${
-                        likedBeer && "fill-black"
+                        likedBeer && "fill-black dark:fill-red-700"
                       }`}
                       onClick={
                         likedBeer
@@ -119,10 +133,11 @@ export function ListBeers(props: ListBeersProps) {
                   </div>
                 ) : (
                   <div className="w-full mt-2 text-center">
-                    <Link href="/sign-in"></Link>
-                    <Button variant="outline" className="w-full">
-                      Inicia sesion
-                    </Button>
+                    <Link href="/sign-in" passHref>
+                        <Button variant="outline" className="w-full">
+                          Inicia sesion
+                        </Button>
+                    </Link>
                   </div>
                 )}
               </div>

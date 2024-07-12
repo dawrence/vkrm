@@ -1,4 +1,4 @@
-import { Calendar, Car,Beer ,  Heart, SquareGanttChart } from "lucide-react";
+import { Calendar, Beer ,  Heart, SquareGanttChart } from "lucide-react";
 
 export const dataGeneralSidebar = [
   {

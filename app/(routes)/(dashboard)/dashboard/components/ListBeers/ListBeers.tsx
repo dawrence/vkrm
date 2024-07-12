@@ -18,18 +18,20 @@ export function ListBeers(props: ListBeersProps) {
           price,
           photo,
           name,
-          brand,
-          type,
+          style,
+          family,
+          tp,
+          categories,
+          volume,
           abv,
           ibu,
-          volume,
           origin,
         } = beer;
 
         const likedBeer = lovedItems.some((item) => item.id === beer.id);
 
         return (
-          <div key={id} className="p-1 rounded-lg shadow-md hover:shadow-lg">
+          <div key={id} className="p-1 rounded-lg shadow-md hover:shadow-lg dark:bg-gray-800">
             <Image
               src={photo}
               alt={name}
@@ -50,8 +52,26 @@ export function ListBeers(props: ListBeersProps) {
 
               <p className="flex items-center">
                 <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
-                <p className="text-1xl font-bold">Marca: </p>
-                 {brand} 
+                <p className="text-1xl font-bold">Familia: </p>
+                 {family} 
+              </p>
+
+              <p className="flex items-center">
+                <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
+                <p className="text-1xl font-bold">Estilo: </p>
+                 {style} 
+              </p>
+
+              <p className="flex items-center">
+                <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
+                <p className="text-1xl font-bold">Presentacion: </p>
+                 {tp} 
+              </p>
+
+              <p className="flex items-center">
+                <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
+                <p className="text-1xl font-bold">Categoria: </p>
+                 {categories} 
               </p>
 
               <p className="flex items-center">
@@ -65,22 +85,17 @@ export function ListBeers(props: ListBeersProps) {
                 <p className="text-1xl font-bold">Amargura: </p>
                 {ibu}
               </p>
-
+ 
               <p className="flex items-center">
                 <Square className="h-4 w-4 mr-2" strokeWidth={1} />
                 <p className="text-1xl font-bold">Cantidad: </p>
                 {volume} ML
               </p>
 
-              <p className="flex items-center">
-                <Gem className="h-4 w-4 mr-2" strokeWidth={1} />
-                <p className="text-1xl font-bold">Tipo de cerveza: </p>
-                {type}
-              </p>
               <div className="flex items-center justify-center gap-x-3">
                 {/* <ModalAddReservation beer={beer} /> */}
                 <Heart
-                  className={`mt-2 cursor-pointer ${likedBeer && "fill-black"}`}
+                  className={`mt-2 cursor-pointer ${likedBeer && "fill-black dark:fill-red-700"}`}
                   onClick={
                     likedBeer
                       ? () => removeLovedItem(beer.id)

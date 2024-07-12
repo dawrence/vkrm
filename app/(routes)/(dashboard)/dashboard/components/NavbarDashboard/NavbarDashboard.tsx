@@ -3,6 +3,7 @@ import { Menu } from "lucide-react";
 import { SidebarRoutes } from "../SidebarRoutes";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { ModeToggle } from "@/components/toggle-theme";
 
 export function NavbarDashboard() {
   return (
@@ -19,13 +20,14 @@ export function NavbarDashboard() {
       </div>
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-x-7">
-          <Link href="/beers">List Beers</Link>
+          <Link href="/beers">Lista de cervezas</Link>
           <Link href="/dashboard">Dashboard</Link>
         </div>
         <div className="flex items-end justify-end gap-x-2">
           <UserButton />
         </div>
       </div>
+      <ModeToggle />
     </nav>
   );
 }

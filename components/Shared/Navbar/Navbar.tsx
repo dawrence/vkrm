@@ -1,4 +1,5 @@
 "use client";
+import { ModeToggle } from "@/components/toggle-theme";
 import { Button } from "@/components/ui/button";
 import { useLovedBeers } from "@/hooks/use-loved-beers";
 import { UserButton, useAuth } from "@clerk/nextjs";
@@ -19,14 +20,14 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center justify-center gap-x-7">
-          <Link href="/beers">List Beers</Link>
+          <Link href="/beers">Lista de cervezas</Link>
           <Link href="/dashboard">Dashboard</Link>
           {userId ? (
             <>
               <Link href="/loved-beers">
                 <Heart
                   strokeWidth={1}
-                  className={`cursor-pointer ${lovedItems.length > 0 && "fill-black"}`}
+                  className={`cursor-pointer ${lovedItems.length > 0 && "fill-black dark:fill-red-700"}`}
                 />
               </Link>
               <UserButton />
@@ -39,6 +40,7 @@ export function Navbar() {
               </Button>
             </Link>
           )}
+          <ModeToggle />
         </div>
       </div>
     </div>

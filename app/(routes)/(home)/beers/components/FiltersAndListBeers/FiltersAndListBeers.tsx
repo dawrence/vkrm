@@ -10,15 +10,43 @@ export function FiltersAndListBeers(props: FiltersAndListBeersProps) {
   const { beers } = props;
   const [filteredBeers, setFilteredBeers] = useState<Beer[]>();
   const [filters, setFilters] = useState({
-    type: "",
+    family: "",
+    tp: "",
+    categories: "",
+    ibu: "",
+    origin: ""
   });
 
   useEffect(() => {
     let filtered = beers;
 
-    if (filters.type) {
+    if (filters.family) {
       filtered = filtered.filter((beer) =>
-        beer.type.toLowerCase().includes(filters.type.toLowerCase())
+        beer.family && beer.family.toLowerCase().includes(filters.family.toLowerCase())
+      );
+    }
+
+    if (filters.tp) {
+      filtered = filtered.filter((beer) =>
+        beer.tp && beer.tp.toLowerCase().includes(filters.tp.toLowerCase())
+      );
+    }
+
+    if (filters.categories) {
+      filtered = filtered.filter((beer) =>
+        beer.categories && beer.categories.toLowerCase().includes(filters.categories.toLowerCase())
+      );
+    }
+
+    if (filters.ibu) {
+      filtered = filtered.filter((beer) =>
+        beer.ibu && beer.ibu.toLowerCase().includes(filters.ibu.toLowerCase())
+      );
+    }
+
+    if (filters.origin) {
+      filtered = filtered.filter((beer) =>
+        beer.origin && beer.origin.toLowerCase().includes(filters.origin.toLowerCase())
       );
     }
 
@@ -34,7 +62,11 @@ export function FiltersAndListBeers(props: FiltersAndListBeersProps) {
 
   const clearFilters = () => {
     setFilters({
-      type: "",
+      family: "",
+      tp: "",
+      categories: "",
+      ibu: "",
+      origin: ""
     });
   }
 

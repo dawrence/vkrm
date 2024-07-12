@@ -41,8 +41,11 @@ export function FormEditBeer(props: FormEditBeerProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: beerData.name,
-      brand: beerData.brand,
-      type: beerData.type,
+      brewery: beerData.brewery ?? undefined,
+      style: beerData.style ?? undefined,
+      family: beerData.family ?? undefined,
+      tp: beerData.tp ?? undefined,
+      categories: beerData.categories ?? undefined,
       abv: beerData.abv,
       ibu: beerData.ibu ?? undefined,
       volume: beerData.volume,
@@ -66,19 +69,22 @@ export function FormEditBeer(props: FormEditBeerProps) {
         variant: "destructive",
       });
     }
-  }
+  };
 
   const { isValid } = form.formState;
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6 relative"
+      >
         <div className="grid gap-2 lg:grid-cols-2 grid-cols-2">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Beer name</FormLabel>
+                <FormLabel>Nombre de la cerveza</FormLabel>
                 <FormControl>
                   <Input placeholder="Club colombia" {...field} />
                 </FormControl>
@@ -89,12 +95,12 @@ export function FormEditBeer(props: FormEditBeerProps) {
 
           <FormField
             control={form.control}
-            name="brand"
+            name="brewery"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Brand</FormLabel>
+                <FormLabel>Marca</FormLabel>
                 <FormControl>
-                  <Input placeholder="Bavaria" {...field} />
+                  <Input placeholder="Ingrese la marca" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,10 +109,10 @@ export function FormEditBeer(props: FormEditBeerProps) {
 
           <FormField
             control={form.control}
-            name="type"
+            name="family"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Type</FormLabel>
+                <FormLabel>Familia: </FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -117,10 +123,75 @@ export function FormEditBeer(props: FormEditBeerProps) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
+                    <SelectItem value="Ale">Ale</SelectItem>
                     <SelectItem value="Lager">Lager</SelectItem>
-                    <SelectItem value="Ipa">Ipa</SelectItem>
-                    <SelectItem value="Rubia">Rubia</SelectItem>
-                    <SelectItem value="Negra">Negra</SelectItem>
+                    <SelectItem value="Lambic">Lambic</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="style"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cual es el estilo de la cerveza</FormLabel>
+                <FormControl>
+                  <Input placeholder="Belgian white fruit..." {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="tp"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Tipo de presentacion: </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona el tipo de presentacion..." />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Botella">Botella</SelectItem>
+                    <SelectItem value="Lata">Lata</SelectItem>
+                    <SelectItem value="Barril">Barril</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="categories"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Categorias: </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona la categoria de la cerveza" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Importadas">Importadas</SelectItem>
+                    <SelectItem value="Nacionales">Nacionales</SelectItem>
+                    <SelectItem value="Artesanales">Artesanales</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -133,7 +204,7 @@ export function FormEditBeer(props: FormEditBeerProps) {
             name="abv"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>ABV</FormLabel>
+                <FormLabel>Grado de alcohol</FormLabel>
                 <FormControl>
                   <Input placeholder="4.5" type="number" {...field} />
                 </FormControl>
@@ -147,10 +218,22 @@ export function FormEditBeer(props: FormEditBeerProps) {
             name="ibu"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>IBU</FormLabel>
-                <FormControl>
-                  <Input placeholder="30" type="number" {...field} />
-                </FormControl>
+                <FormLabel>Seleccione el nivel de amargor: </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Nivel de amargor..." />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Bajo">Bajo</SelectItem>
+                    <SelectItem value="Medio">Medio</SelectItem>
+                    <SelectItem value="Alto">Alto</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -175,7 +258,7 @@ export function FormEditBeer(props: FormEditBeerProps) {
             name="price"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Price</FormLabel>
+                <FormLabel>Precio</FormLabel>
                 <FormControl>
                   <Input placeholder="1500" type="number" {...field} />
                 </FormControl>
@@ -189,14 +272,14 @@ export function FormEditBeer(props: FormEditBeerProps) {
             name="origin"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Origin</FormLabel>
+                <FormLabel>Origen</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select the origin of beer" />
+                      <SelectValue placeholder="eleccione el origen" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -204,6 +287,11 @@ export function FormEditBeer(props: FormEditBeerProps) {
                     <SelectItem value="Alemania">Alemania</SelectItem>
                     <SelectItem value="Escocia">Escocia</SelectItem>
                     <SelectItem value="Colombia">Colombia</SelectItem>
+                    <SelectItem value="España">España</SelectItem>
+                    <SelectItem value="Inglaterra">Inglaterra</SelectItem>
+                    <SelectItem value="Republica checa">Republica checa</SelectItem>
+                    <SelectItem value="EEUU">EEUU</SelectItem>
+                    <SelectItem value="Francia">Francia</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -216,10 +304,10 @@ export function FormEditBeer(props: FormEditBeerProps) {
             name="photo"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Beer image</FormLabel>
+                <FormLabel>Imagen de cerveza</FormLabel>
                 <FormControl>
                   {photoUploaded ? (
-                    <p className="text-sm">Image uploaded</p>
+                    <p className="text-sm">Imagen subida con exito!</p>
                   ) : (
                     <UploadButton
                       className="rounded-lg bg-slate-600/20 text-slate-800 outline-dotted outline-3"
@@ -241,7 +329,7 @@ export function FormEditBeer(props: FormEditBeerProps) {
           />
         </div>
         <Button type="submit" className="w-full mt-5" disabled={!isValid}>
-          Edit beer
+          Editar cerveza
         </Button>
       </form>
     </Form>

@@ -18,8 +18,11 @@ model Beer {
   id          String   @id @default(uuid())
   userId      String
   name        String
-  brand       String
-  type        String
+  brewery     String?
+  style       String?
+  family      String?
+  tp          String?
+  categories  String?
   abv         String
   ibu         String?
   volume      String

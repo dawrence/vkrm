@@ -18,7 +18,7 @@ export function ButtonAddBeer() {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline" onClick={() => setOpenDialog(true)}>
-          Add new Beer
+          agregar nueva cerveza
           <PlusCircle className="ml-2" />
         </Button>
       </DialogTrigger>

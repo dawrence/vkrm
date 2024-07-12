@@ -1,7 +1,18 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { Airplay, Earth, Gem, Lectern, Percent, Square, Trash, Upload, Users, Wrench } from "lucide-react";
+import {
+  Airplay,
+  Earth,
+  Gem,
+  Lectern,
+  Percent,
+  Square,
+  Trash,
+  Upload,
+  Users,
+  Wrench,
+} from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -15,37 +26,37 @@ export function CardBeer(props: CardBeerProps) {
   const router = useRouter();
   const deleteBeer = async () => {
     try {
-        await axios.delete(`/api/beer/${beer.id}`)
-        toast({title: "Beer deleted"})
-        router.refresh()
+      await axios.delete(`/api/beer/${beer.id}`);
+      toast({ title: "Beer deleted" });
+      router.refresh();
     } catch (error) {
-        toast({
-            title: "Something went wrong",
-            variant: "destructive"
-        })
+      toast({
+        title: "Something went wrong",
+        variant: "destructive",
+      });
     }
-  }
+  };
 
   const handlerPublish = async (publish: boolean) => {
     try {
-        await axios.patch(`/api/beer/${beer.id}`, {isPublish: publish})
+      await axios.patch(`/api/beer/${beer.id}`, { isPublish: publish });
 
-        if(publish) {
-            toast({title: "Beer published"})
-        } else {
-            toast({title: "Beer unpublished"})
-        }
-        router.refresh()
+      if (publish) {
+        toast({ title: "Beer published" });
+      } else {
+        toast({ title: "Beer unpublished" });
+      }
+      router.refresh();
     } catch (error) {
-        toast({
-            title: "Something went wrong",
-            variant: "destructive"
-        })
+      toast({
+        title: "Something went wrong",
+        variant: "destructive",
+      });
     }
-  }
+  };
 
   return (
-    <div className="relative p-1 bg-white rounded-lg shadow-md hover:shadow-lg">
+    <div className="relative p-1 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg">
       <Image
         src={beer.photo}
         alt={beer.name}
@@ -55,11 +66,11 @@ export function CardBeer(props: CardBeerProps) {
       />
       {beer.isPublish ? (
         <p className="absolute top-0 right-0 w-full p-1 text-center text-white bg-green-700 rounded-t-lg">
-            Published
+          Publicado
         </p>
       ) : (
         <p className="absolute top-0 left-0 right-0 w-full p-1 text-center text-white bg-red-300 rounded-t-lg">
-          Not published
+          No publicado
         </p>
       )}
 
@@ -69,6 +80,7 @@ export function CardBeer(props: CardBeerProps) {
           <p>{beer.price}$ COP</p>
         </div>
 
+
         <div className="grid md:grid-cols-2 gap-x-4">
           <p className="flex items-center">
             <Earth className="h-4 w-4 mr-2" strokeWidth={1} />
@@ -77,7 +89,7 @@ export function CardBeer(props: CardBeerProps) {
 
           <p className="flex items-center">
             <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
-            {beer.brand}
+            {beer.brewery}
           </p>
 
           <p className="flex items-center">
@@ -97,17 +109,33 @@ export function CardBeer(props: CardBeerProps) {
 
           <p className="flex items-center">
             <Gem className="h-4 w-4 mr-2" strokeWidth={1} />
-            {beer.type}
+            {beer.style}
           </p>
+
+          <p className="flex items-center">
+            <Gem className="h-4 w-4 mr-2" strokeWidth={1} />
+            {beer.family}
+          </p>
+
+          <p className="flex items-center">
+            <Gem className="h-4 w-4 mr-2" strokeWidth={1} />
+            {beer.tp}
+          </p>
+
+          <p className="flex items-center">
+            <Gem className="h-4 w-4 mr-2" strokeWidth={1} />
+            {beer.categories}
+          </p>
+
         </div>
 
         <div className="flex md:flex-row flex-col-reverse gap-y-2 justify-between mt-3 gap-x-4">
           <Button variant="outline" onClick={deleteBeer}>
-            delete
+            Eliminar
             <Trash className="h-4 w-4 ml-2" />
           </Button>
 
-          <ButtonEditBeer beerData={beer}/>
+          <ButtonEditBeer beerData={beer} />
         </div>
 
         {beer.isPublish ? (
@@ -116,15 +144,12 @@ export function CardBeer(props: CardBeerProps) {
             variant="outline"
             onClick={() => handlerPublish(false)}
           >
-            Unpublish
+            Despublicar
             <Upload className="h-4 w-4 ml-2" />
           </Button>
         ) : (
-          <Button
-            className="w-full mt-3"
-            onClick={() => handlerPublish(true)}
-          >
-            Publish
+          <Button className="w-full mt-3" onClick={() => handlerPublish(true)}>
+            Publicar
             <Upload className="h-4 w-4 ml-2" />
           </Button>
         )}

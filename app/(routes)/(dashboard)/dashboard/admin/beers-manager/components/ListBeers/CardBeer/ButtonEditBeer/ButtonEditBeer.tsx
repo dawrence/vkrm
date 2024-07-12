@@ -21,7 +21,7 @@ export function ButtonEditBeer(props: ButtonEditBeerProps) {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline"onClick={() => setOpenDialog(true)}>
-          Edit
+          Editar
           <Pencil className="w-4 h-4 ml-2" />
         </Button>
       </DialogTrigger>
