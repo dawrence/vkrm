@@ -31,7 +31,7 @@ export function ListBeers(props: ListBeersProps) {
   if (!beers) {
     return <SkeletonBeers />;
   }
-
+ 
   return (
     <>
       {beers.length === 0 && (

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 
 import {
   Select,
@@ -24,9 +24,9 @@ export function FiltersBeers(props: FiltersBeersProps) {
     }
   };
 
-
+  // mt-5 mb-8 grid grid-cols-2 gap-y-5 md:grid-cols-2 md:gap-y-5 lg:flex lg:flex-row lg:space-y-0 lg:gap-10
   return (
-    <div className="mt-5 mb-8 flex flex-col space-y-2 md:flex-row md:space-y-0 md:gap-5">
+    <div className="mt-5 mb-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-16 lg:flex lg:flex-row lg:space-y-0 lg:gap-10">
       <Select
         onValueChange={(value) => handleFilter("family", value)}
         value={filters.family}

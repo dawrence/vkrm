@@ -18,6 +18,7 @@ import { useLovedBeers } from "@/hooks/use-loved-beers";
 export function ListBeers(props: ListBeersProps) {
   const { beers } = props;
   const { addLoveItem, lovedItems, removeLovedItem } = useLovedBeers();
+
   return (
     <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-4">
       {beers.map((beer: Beer) => {

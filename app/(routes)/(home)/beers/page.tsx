@@ -19,7 +19,6 @@ export default async function pageBeers() {
       <Navbar />
       <div className="p-6 mx-auto max-w-7xl">
         <HeaderBeers />
-        <div></div>
         <div>
           <FiltersAndListBeers beers={beers} />
         </div>
