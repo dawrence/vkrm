@@ -51,11 +51,11 @@ export function ListBeers(props: ListBeersProps) {
             abv,
             ibu,
             volume,
-            origin,
+            origin, 
           } = beer;
           const likedBeer = lovedItems.some((item) => item.id === beer.id);
           return (
-            <div key={id} className="p-1 rounded-lg shadow-md hover:shadow-lg dark:bg-gray-800">
+            <div key={id} className="p-1 rounded-lg shadow-md hover:shadow-lg dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-600">
               <Image
                 src={photo}
                 alt=""
@@ -122,7 +122,7 @@ export function ListBeers(props: ListBeersProps) {
                     {/* <ModalAddReservation beer={beer} /> */}
                     <Heart
                       className={`mt-2 cursor-pointer ${
-                        likedBeer && "fill-black dark:fill-red-700"
+                        likedBeer && "fill-black dark:fill-red-700" 
                       }`}
                       onClick={
                         likedBeer

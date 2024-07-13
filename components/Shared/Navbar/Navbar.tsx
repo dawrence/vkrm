@@ -12,7 +12,7 @@ export function Navbar() {
   const {lovedItems} = useLovedBeers();
 
   return (
-    <div className="max-w-5xl py-5 mx-auto">
+    <div className="max-w-5xl py-5 mx-auto px-5 sm:px-0">
       <div className="justify-between lg:flex">
         <Link href="/" className="flex items-center justify-center gap-x-2">
           <Image src="/viking.png" alt="JuanesBeer" width={150} height={150} />

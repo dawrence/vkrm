@@ -3,7 +3,15 @@ import { Beer } from "@prisma/client";
 
 import { ListBeersProps } from "./ListBeers.types";
 import Image from "next/image";
-import { Gem, Heart, Earth, Percent, Airplay, Lectern, Square } from "lucide-react";
+import {
+  Gem,
+  Heart,
+  Earth,
+  Percent,
+  Airplay,
+  Lectern,
+  Square,
+} from "lucide-react";
 import { ModalAddReservation } from "@/components/Shared/ModalAddReservation";
 import { useLovedBeers } from "@/hooks/use-loved-beers";
 
@@ -31,7 +39,10 @@ export function ListBeers(props: ListBeersProps) {
         const likedBeer = lovedItems.some((item) => item.id === beer.id);
 
         return (
-          <div key={id} className="p-1 rounded-lg shadow-md hover:shadow-lg dark:bg-gray-800">
+          <div
+            key={id}
+            className="p-1 rounded-lg shadow-md hover:shadow-lg dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >
             <Image
               src={photo}
               alt={name}
@@ -47,31 +58,31 @@ export function ListBeers(props: ListBeersProps) {
               <p className="flex items-center">
                 <Earth className="h-4 w-4 mr-2" strokeWidth={1} />
                 <p className="text-1xl font-bold">Origen: </p>
-                {origin} 
+                {origin}
               </p>
 
               <p className="flex items-center">
                 <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
                 <p className="text-1xl font-bold">Familia: </p>
-                 {family} 
+                {family}
               </p>
 
               <p className="flex items-center">
                 <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
                 <p className="text-1xl font-bold">Estilo: </p>
-                 {style} 
+                {style}
               </p>
 
               <p className="flex items-center">
                 <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
                 <p className="text-1xl font-bold">Presentacion: </p>
-                 {tp} 
+                {tp}
               </p>
 
               <p className="flex items-center">
                 <Airplay className="h-4 w-4 mr-2" strokeWidth={1} />
                 <p className="text-1xl font-bold">Categoria: </p>
-                 {categories} 
+                {categories}
               </p>
 
               <p className="flex items-center">
@@ -85,7 +96,7 @@ export function ListBeers(props: ListBeersProps) {
                 <p className="text-1xl font-bold">Amargura: </p>
                 {ibu}
               </p>
- 
+
               <p className="flex items-center">
                 <Square className="h-4 w-4 mr-2" strokeWidth={1} />
                 <p className="text-1xl font-bold">Cantidad: </p>
@@ -95,7 +106,9 @@ export function ListBeers(props: ListBeersProps) {
               <div className="flex items-center justify-center gap-x-3">
                 {/* <ModalAddReservation beer={beer} /> */}
                 <Heart
-                  className={`mt-2 cursor-pointer ${likedBeer && "fill-black dark:fill-red-700"}`}
+                  className={`mt-2 cursor-pointer ${
+                    likedBeer && "fill-black dark:fill-red-700"
+                  }`}
                   onClick={
                     likedBeer
                       ? () => removeLovedItem(beer.id)

@@ -56,7 +56,7 @@ export function CardBeer(props: CardBeerProps) {
   };
 
   return (
-    <div className="relative p-1 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg">
+    <div className="relative p-1 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg hover:bg-gray-100 dark:hover:bg-gray-600">
       <Image
         src={beer.photo}
         alt={beer.name}

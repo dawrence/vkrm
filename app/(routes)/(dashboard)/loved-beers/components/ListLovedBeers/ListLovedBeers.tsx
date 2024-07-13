@@ -43,7 +43,7 @@ export function ListLovedBeers() {
 
             return (
               <div
-                className="p-1 rounded-lg shadow-md dark:shadow-lg bg-white dark:bg-gray-800 hover:shadow-lg"
+                className="p-1 rounded-lg shadow-md dark:shadow-lg bg-white dark:bg-gray-800 hover:shadow-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                 key={id}
               >
                 <Image
